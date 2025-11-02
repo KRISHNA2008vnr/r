@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You - Krishna</title>
+    <style>
+        /* Space-themed dark theme with gradients, stars, and subtle glows - enhanced for elegance */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            color: #f0f0f0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                              radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+                              radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                              radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+                              radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #e0aaff;
+            text-shadow: 0 0 30px rgba(224, 170, 255, 0.7), 0 0 60px rgba(224, 170, 255, 0.4);
+            animation: pulse 2s infinite, glow 3s ease-in-out infinite alternate;
+            overflow: hidden;
+            border-right: 2px solid #e0aaff;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            margin-top: 15px;
+            animation: fadeInUp 2s ease-out 3s both;
+        }
+
+        .main-content {
+            position: relative;
+        }
+
+        .message {
+            margin-bottom: 60px;
+        }
+
+        .paragraph {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin: 25px 0;
+            opacity: 0;
+            transform: translateY(30px) rotateX(10deg);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .delay-1 { animation-delay: 1s; }
+        .delay-2 { animation-delay: 2s; }
+        .delay-3 { animation-delay: 3s; }
+        .delay-4 { animation-delay: 4s; }
+        .delay-5 { animation-delay: 5s; }
+        .delay-6 { animation-delay: 6s; }
+        .delay-7 { animation-delay: 7s; }
+        .delay-8 { animation-delay: 8s; }
+        .delay-9 { animation-delay: 9s; }
+
+        .quotes {
+            margin: 60px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ffb3ba;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+            text-shadow: 0 0 10px rgba(255, 179, 186, 0.5);
+        }
+
+        .quote.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery {
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .gallery-title {
+            font-size: 2.2rem;
+            color: #e0aaff;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 1.2s ease;
+            text-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
+        }
+
+        .images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .top-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom-images {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-img {
+            max-width: 320px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 40px rgba(224, 170, 255, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+            opacity: 1;
+            transform: translateY(30px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.08) rotateY(5deg);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 60px rgba(224, 170, 255, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-elements div {
+            position: absolute;
+            animation: float 8s ease-in-out infinite;
+            font-size: 2rem;
+        }
+
+        .heart { top: 20%; left: 10%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 50%; right: 15%; animation-delay: 2s; }
+        .star:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .planet { top: 30%; right: 10%; font-size: 3rem; animation: orbit 10s linear infinite; }
+        .comet { bottom: 40%; left: 5%; animation: float 6s ease-in-out infinite, trail 6s ease-in-out infinite; }
+        .rose { top: 15%; right: 5%; font-size: 2.5rem; content: '🌹'; animation: sway 5s ease-in-out infinite; }
+        .kiss { bottom: 10%; right: 20%; font-size: 2.2rem; content: '💋'; animation: bounce 4s ease-in-out infinite; }
+        .butterfly { top: 60%; left: 15%; font-size: 2rem; content: '🦋'; animation: flutter 7s ease-in-out infinite; }
+        .moon { top: 5%; left: 50%; font-size: 3rem; content: '🌙'; animation: glowPulse 6s ease-in-out infinite; }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 1rem;
+            color: #a0a0a0;
+            animation: fadeInUp 3s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 30px rgba(224, 170, 255, 0.7); }
+            100% { text-shadow: 0 0 50px rgba(224, 170, 255, 1); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        @keyframes trail {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; transform: translateX(10px); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #e0aaff; }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes flutter {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(5px) rotate(5deg); }
+            50% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; max-width: 95%; }
+            .title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .paragraph { font-size: 1rem; line-height: 1.6; }
+            .quote { font-size: 1rem; }
+            .gallery-title { font-size: 1.8rem; }
+            .images { gap: 15px; }
+            .gallery-img { max-width: 280px; }
+            .floating-elements div { font-size: 1.5rem; }
+            .planet, .moon { font-size: 2rem; }
+            .footer { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+            .title { font-size: 2rem; }
+            .images { flex-direction: column; align-items: center; }
+            .floating-elements div { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">I Miss You So Much</h1>
+            <p class="subtitle"></p>
+        </header>
+        
+        <main class="main-content">
+            <section class="message">
+                <p class="paragraph fade-in">Hey Riya (Chellakutty),</p>
+                <p class="paragraph fade-in delay-1">School holidays are tough without you. I can't stop thinking about our time together—your smile, your laugh, the way you make everything better.</p>
+                <p class="paragraph fade-in delay-2">I love you more than words can say. Can't wait to see you again. ❤️</p>
+            </section>
+            
+            <section class="quotes">
+                <p class="quote fade-in delay-3">"In your eyes, I found the stars, and in your heart, my universe."</p>
+                <p class="quote fade-in delay-4">"Every moment without you feels like a galaxy apart."</p>
+                <p class="quote fade-in delay-5">"You are my everything, my love, my light in the darkest space."</p>
+            </section>
+            
+            <section class="gallery">
+                <h2 class="gallery-title fade-in delay-6">Memories of Us</h2>
+                <div class="images">
+                    <div class="top-image">
+                        <img src="https://file.garden/aGlJXINuT2XdddNl/1.png" alt="Memory 1" class="gallery-img fade-in delay-7" onerror="this.style.display='none'; console.log('Image 1.png not found');">
+                    </div>
+                    <div class="bottom-images">
+                        <img src="https://file.garden/aGlJXINuT2XdddNl/2.png" alt="Memory 2" class="gallery-img fade-in delay-8" onerror="this.style.display='none'; console.log('Image 2.png not found');">
+                        <img src="https://file.garden/aGlJXINuT2XdddNl/3.png" alt="Memory 3" class="gallery-img fade-in delay-9" onerror="this.style.display='none'; console.log('Image 3.png not found');">
+                    </div>
+                </div>
+            </section>
+            
+            <div class="floating-elements">
+                <div class="heart">❤️</div>
+                <div class="star">✨</div>
+                <div class="star">🌟</div>
+                <div class="planet">🪐</div>
+                <div class="comet">☄️</div>
+                <div class="rose">🌹</div>
+                <div class="kiss">💋</div>
+                <div class="butterfly">🦋</div>
+                <div class="moon">🌙</div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>Made with love by Krishna</p>
+        </footer>
+    </div>
+    
+    <audio id="bg-music" loop autoplay>
+        <source src="https://file.garden/aGlJXINuT2XdddNl/mus.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const paragraphs = document.querySelectorAll('.paragraph');
+            const quotes = document.querySelectorAll('.quote');
+            const galleryTitle = document.querySelector('.gallery-title');
+            const images = document.querySelectorAll('.gallery-img');
+            
+            paragraphs.forEach((p, index) => {
+                setTimeout(() => {
+                    p.classList.add('fade-in');
+                }, index * 700);
+            });
+            
+            quotes.forEach((q, index) => {
+                setTimeout(() => {
+                    q.classList.add('fade-in');
+                }, 2000 + index * 500);
+            });
+            
+            setTimeout(() => {
+                galleryTitle.classList.add('fade-in');
+            }, 3500);
+            
+            images.forEach((img, index) => {
+                setTimeout(() => {
+                    img.classList.add('fade-in');
+                }, 4000 + index * 500);
+            });
+            
+            // Removed click event for autoplay - music should start automatically now
+            // If autoplay is blocked by browser, it will fail silently
+        });
+    </script>
+</body>
+</html>
