@@ -345,7 +345,7 @@
         </footer>
     </div>
     
-    <audio id="bg-music" loop autoplay>
+    <audio id="bg-music" loop>
         <source src="https://file.garden/aGlJXINuT2XdddNl/mus.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -379,8 +379,16 @@
                 }, 4000 + index * 500);
             });
             
-            // Removed click event for autoplay - music should start automatically now
-            // If autoplay is blocked by browser, it will fail silently
+            const music = document.getElementById('bg-music');
+            document.addEventListener('click', () => {
+                music.play().catch(e => console.log('Audio blocked:', e));
+            }, { once: true });
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.3;
+                document.querySelector('.floating-elements').style.transform = `translateY(${rate}px)`;
+            });
         });
     </script>
 </body>
